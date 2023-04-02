@@ -1,2 +1,9 @@
 streamlit 
 pandas
+matplotlib.pyplot
+seaborn
+plotly.graph_objects
+sklearn.preprocessing
+numpy
+datetime
+xgboost
