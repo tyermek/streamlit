@@ -2,8 +2,8 @@ streamlit
 pandas
 matplotlib
 seaborn
-plotly.graph_objects
-sklearn.preprocessing
+plotly
+sklearn
 numpy
 datetime
 xgboost
