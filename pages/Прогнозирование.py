@@ -1,4 +1,6 @@
 import streamlit as st
+from keras.models import load_model
+import keras.models as models
 import numpy as np
 import datetime
 
@@ -7,10 +9,13 @@ st.header('Прогнозирование')
 import xgboost as xgb
 # Load the model
 loaded_model = xgb.Booster()
-loaded_model.load_model('model_zhalagash_1.bin')
-# model_pred.compile(loss='mean_squared_error', optimizer='adam')
-# n_steps = 1  # number of time steps in the input sequence
-# n_features = 13  # number of input features
+
+
+model = st.selectbox('Выберите электростанцию', ('Жалагаш', 'Шу'))
+if model == 'Жалагаш':
+    loaded_model.load_model('model_zhalagash_1.bin')
+elif model == 'Шу':
+    loaded_model.load_model('model_Shu.bin')
 times = []
 for hours in range(0, 24):
     times.append(datetime.time(hours, 0))
@@ -112,9 +117,14 @@ elif E == 'Сухой рассыпчатый снег покрывает мен�
     E = 6
 P = st.number_input('Давление (мм)')
 U = st.number_input('Влажность воздуха (%)')
-X_new = np.array([[Time.hour, s, sH, T, p, w, c, Cl, tS, E, P, U]])
-dtest = xgb.DMatrix(X_new)
-# X_new = np.reshape(X_new, (1, n_steps, n_features))
+
+if model == 'Жалагаш':
+    X_new = np.array([[Time.hour, s, sH, T, p, w, c, Cl, tS, E, P, U]])
+    dtest = xgb.DMatrix(X_new)
+elif model == 'Шу':
+    X_new = np.array([[Time.hour, s, sH, T, Cl, w, tS, E, P, U]])
+    dtest = xgb.DMatrix(X_new)
+
 y_pred = loaded_model.predict(dtest)
 st.subheader('\n\n\n\nПрогнозируемое количество электроэнергии:')
 if y_pred < 0:
