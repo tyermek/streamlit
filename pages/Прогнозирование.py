@@ -1,6 +1,4 @@
 import streamlit as st
-from keras.models import load_model
-import keras.models as models
 import numpy as np
 import datetime
 
