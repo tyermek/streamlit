@@ -9,10 +9,10 @@ import xgboost as xgb
 loaded_model = xgb.Booster()
 
 
-model = st.selectbox('Выберите электростанцию', ('Жалагаш', 'Шу'))
-if model == 'Жалагаш':
+model = st.selectbox('Выберите электростанцию', ('Объект 1', 'Объект 2'))
+if model == 'Объект 1':
     loaded_model.load_model('model_zhalagash_1.bin')
-elif model == 'Шу':
+elif model == 'Объект 2':
     loaded_model.load_model('model_Shu.bin')
 times = []
 for hours in range(0, 24):
