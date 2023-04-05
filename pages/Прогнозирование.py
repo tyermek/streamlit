@@ -116,10 +116,10 @@ elif E == 'Сухой рассыпчатый снег покрывает мен�
 P = st.number_input('Давление (мм)')
 U = st.number_input('Влажность воздуха (%)')
 
-if model == 'Жалагаш':
+if model == 'Объект 1':
     X_new = np.array([[Time.hour, s, sH, T, p, w, c, Cl, tS, E, P, U]])
     dtest = xgb.DMatrix(X_new)
-elif model == 'Шу':
+elif model == 'Объект 2':
     X_new = np.array([[Time.hour, s, sH, T, Cl, w, tS, E, P, U]])
     dtest = xgb.DMatrix(X_new)
 
