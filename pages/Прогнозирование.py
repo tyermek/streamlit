@@ -125,6 +125,6 @@ elif model == 'Шу':
 
 y_pred = loaded_model.predict(dtest)
 st.subheader('\n\n\n\nПрогнозируемое количество электроэнергии:')
-if y_pred < 0:
+if y_pred < 0 or s == 0:
     y_pred = 0
 st.write(int(y_pred))
