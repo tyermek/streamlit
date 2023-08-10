@@ -25,7 +25,6 @@ for i in cat:
 
 # Calculate the correlation matrix and continue with your code
 fig = plt.figure(figsize=(10, 4))
-st.write(df)
 corr = df.corr()
 sns.heatmap(corr, annot=True, fmt='.1g')
 plt.title("Корреляционный анализ", fontsize=18);
