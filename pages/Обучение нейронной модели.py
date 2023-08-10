@@ -19,7 +19,7 @@ st.write(df.head())
 # Display some graphs (replace with your own code)
 st.write('Graph 1 - Корреляционный анализ')
 # List of columns to factorize
-cat = ['Cl','W2', 'tS', "E'"]
+cat = ['Cl','w','W2', 'tS', "E'"]
 for i in cat:
     df[i] = pd.factorize(df[i])[0]
 
