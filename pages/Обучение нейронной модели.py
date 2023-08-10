@@ -18,10 +18,16 @@ st.write(df.head())
 
 # Display some graphs (replace with your own code)
 st.write('Graph 1 - Корреляционный анализ')
-cat = ['Cl','W2', 'tS', "E'"]
+# Convert categorical columns to numeric values
+cat = ['Cl', 'W2', 'tS', "E'"]
 for i in cat:
     df[i] = pd.factorize(df[i])[0]
-fig = plt.figure(figsize=(10, 4))
+
+# Drop non-numeric columns
+non_numeric_columns = ['datetime']  # Add other non-numeric columns here if needed
+df = df.drop(columns=non_numeric_columns)
+
+# Calculate correlation matrix
 corr = df.corr()
 sns.heatmap(corr, annot=True, fmt='.1g')
 plt.title("Корреляционный анализ", fontsize=18);
