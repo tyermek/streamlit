@@ -18,9 +18,21 @@ st.write(df.head())
 
 # Display some graphs (replace with your own code)
 st.write('Graph 1 - Корреляционный анализ')
-cat = ['Cl','W2', 'tS', "E'"]
-for i in cat:
-    df[i] = pd.factorize(df[i])[0]
+# List of columns to factorize
+cat_columns = ['Cl', 'W2', 'tS', "E'"]
+
+# Mapping for categorical values to integers
+mapping = {}
+
+for column in cat_columns:
+    unique_values = df[column].unique()
+    mapping[column] = {value: index for index, value in enumerate(unique_values)}
+
+# Apply the mapping to factorize the columns
+for column in cat_columns:
+    df[column] = df[column].map(mapping[column])
+
+# Calculate the correlation matrix and continue with your code
 fig = plt.figure(figsize=(10, 4))
 corr = df.corr()
 sns.heatmap(corr, annot=True, fmt='.1g')
